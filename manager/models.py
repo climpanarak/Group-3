@@ -1,3 +1,51 @@
 from django.db import models
+from django.urls import reverse
+import uuid
 
-# Create your models here.
+class User(models.Model):
+    """Model representing a user."""
+    username = models.CharField(max_length=100)
+    password = models.CharField(max_length=100)
+    email = models.EmailField(max_length=100)
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+
+    def __str__(self):
+        """String for representing the Model object."""
+        return self.username
+
+class UserProfile(models.Model):
+    """Model representing a user profile."""
+    ROLE_CHOICES = (
+        ('MP', 'Management Property'),
+        ('PO', 'Property Owner'),
+    )
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    role = models.CharField(max_length=2, choices=ROLE_CHOICES)
+
+    def __str__(self):
+        """String for representing the Model object."""
+        return f'{self.user.username} - {self.get_role_display()}'
+
+class Property(models.Model):
+    """Model representing a property."""
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=200)
+    address = models.CharField(max_length=200)
+
+    def __str__(self):
+        """String for representing the Model object."""
+        return self.name
+
+class Room(models.Model):
+    """Model representing a room."""
+    PROPERTY_CHOICES = (
+        ('MB', 'Master Bedroom'),
+        ('NR', 'Normal Room'),
+    )
+    property = models.ForeignKey(Property, on_delete=models.CASCADE)
+    type = models.CharField(max_length=2, choices=PROPERTY_CHOICES)
+
+    def __str__(self):
+        """String for representing the Model object."""
+        return f'{self.get_type_display()} - {self.property}'
