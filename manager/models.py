@@ -29,7 +29,7 @@ class UserProfile(models.Model):
 
 class Property(models.Model):
     """Model representing a property."""
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
     name = models.CharField(max_length=200)
     address = models.CharField(max_length=200)
 

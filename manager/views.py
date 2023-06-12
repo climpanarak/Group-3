@@ -1,5 +1,6 @@
-from .models import Property, Room
 from django.shortcuts import render
+from django.views import generic
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Property, Room
 
 def index(request):
@@ -13,3 +14,6 @@ def index(request):
     }
 
     return render(request, 'index.html', context=context)
+
+class PropertyListView(LoginRequiredMixin, generic.ListView):
+    model = Property

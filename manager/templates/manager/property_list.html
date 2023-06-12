@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if property_list %}
+        <table class="table table-bordered">
+            {% for property in property_list %}
+                <tr class="table-secondary">
+                    <td>{{ property.name }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>There are no properties in the system.</p>
+    {% endif %}
+{% endblock %}
