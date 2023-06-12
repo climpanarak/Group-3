@@ -26,9 +26,26 @@
                         <a class="nav-link" href="#">Contact Us</a>
                     </li>
                 </ul>
+                <form class="d-flex ml-auto" action="/search" method="GET">
+                    <input class="form-control me-2" type="search" name="query" placeholder="Search..." aria-label="Search">
+                    <button class="btn btn-outline-light" type="submit">Search</button>
+                </form>
             </div>
+            <ul class="nav navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+                    <li><a class="nav-link" href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
+                {% else %}
+                    <li><a class="nav-link" href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+                    <li><a class="nav-link" href="{% url 'register' %}"><span class="glyphicon glyphicon-log-in"></span>Sign Up</a></li>
+                {% endif %}
+            </ul>
         </div>
     </nav>
+    <div class="container">
+        {% if user.is_authenticated %}
+            Welcome, {{ user.first_name }} {{ user.last_name }}
+        {% endif %}
+    </div>
     <div class="container">
         <br/>
         {% block content %}
