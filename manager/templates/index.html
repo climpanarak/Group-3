@@ -3,24 +3,14 @@
 {% load static %}
 
 {% block content %}
-    <div class="row">
-        <div class="col-md-6">
-            <!-- Property picture -->
-            <img src="{% static 'property_image.jpg' %}" alt="Property Image">
-        </div>
-        <div class="col-md-6">
-            <!-- Login/Sign-in portal -->
-            <h2>Login</h2>
-            <!-- Add your login form here -->
-
-            <h2>Sign up</h2>
-            <!-- Add your sign-up form here -->
-        </div>
+    <div class="text-center">
+        <!-- Property picture -->
+        <img src="{% static 'property_image.jpg' %}" alt="Property Image">
     </div>
 
-    <h1>Management Home</h1>
-    <p>We have the following properties and rooms:</p>
-    <ul>
+    <h1 class="text-center">Management Home</h1>
+    <p class="text-center">We have the following properties and rooms:</p>
+    <ul class="text-center">
         <li><strong>Properties:</strong> {{ num_properties }}</li>
         <li><strong>Rooms:</strong> {{ num_rooms }}</li>
     </ul>
