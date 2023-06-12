@@ -1,5 +1,6 @@
 # Files to ignore when pushing a PyCharm Django project to github:
-
+#files only needed by a PyCharm project and local-only django files
+.idea/
 local_settings.py
 
 #the virtual environment name - use the name of your virtual environment
@@ -10,6 +11,7 @@ venv
 *.log
 *.pot
 *.pyc
+__pycache__/
 local_settings.py
 media
 # Ignore Django Migrations in Development if you are working on team
