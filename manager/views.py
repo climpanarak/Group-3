@@ -1,6 +1,7 @@
 from .models import Property, Room
 from django.shortcuts import render
 from .models import Property, Room
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 def index(request):
     """View function for home page of site."""
@@ -12,4 +13,4 @@ def index(request):
         'num_rooms': num_rooms,
     }
 
-    return render(request, 'index.html', context=context)
+    return render(request, 'catalog/index.html', context=context)
