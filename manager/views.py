@@ -13,7 +13,7 @@ def index(request):
         'num_rooms': num_rooms,
     }
 
-    return render(request, 'catalog/index.html', context=context)
+    return render(request, 'index.html', context=context)
 
 class PropertyListView(LoginRequiredMixin, generic.ListView):
     model = Property
