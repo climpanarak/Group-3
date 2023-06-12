@@ -1,18 +1,9 @@
 from django.db import models
+from django.contrib.auth.models import User
 from django.urls import reverse
 import uuid
 
-class User(models.Model):
-    """Model representing a user."""
-    username = models.CharField(max_length=100)
-    password = models.CharField(max_length=100)
-    email = models.EmailField(max_length=100)
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
 
-    def __str__(self):
-        """String for representing the Model object."""
-        return self.username
 
 class UserProfile(models.Model):
     """Model representing a user profile."""
