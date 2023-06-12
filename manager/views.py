@@ -1,7 +1,7 @@
-from .models import Property, Room
 from django.shortcuts import render
-from .models import Property, Room
+from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
+from .models import Property, Room
 
 def index(request):
     """View function for home page of site."""
@@ -13,4 +13,7 @@ def index(request):
         'num_rooms': num_rooms,
     }
 
-    return render(request, 'catalog/index.html', context=context)
+    return render(request, 'index.html', context=context)
+
+class PropertyListView(LoginRequiredMixin, generic.ListView):
+    model = Property
