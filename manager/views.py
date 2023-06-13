@@ -17,3 +17,6 @@ def index(request):
 
 class PropertyListView(LoginRequiredMixin, generic.ListView):
     model = Property
+
+class PropertyDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Property

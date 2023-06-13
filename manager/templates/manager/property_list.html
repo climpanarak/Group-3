@@ -5,7 +5,7 @@
         <table class="table table-bordered">
             {% for property in property_list %}
                 <tr class="table-secondary">
-                    <td>{{ property.name }}</td>
+                    <td><a href="{{ property.get_absolute_url }}"> {{ property.name }}</a></td>
                 </tr>
             {% endfor %}
         </table>
