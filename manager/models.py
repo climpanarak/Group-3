@@ -24,6 +24,10 @@ class Property(models.Model):
     name = models.CharField(max_length=200)
     address = models.CharField(max_length=200)
 
+    def get_absolute_url(self):
+        """Returns the URL to access a particular author instance."""
+        return reverse('property_detail', args=[str(self.id)])
+
     def __str__(self):
         """String for representing the Model object."""
         return self.name
