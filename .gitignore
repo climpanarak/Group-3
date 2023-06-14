@@ -11,7 +11,7 @@ venv
 *.log
 *.pot
 *.pyc
-__pycache__/
+/__pycache__/
 local_settings.py
 media
 # Ignore Django Migrations in Development if you are working on team
