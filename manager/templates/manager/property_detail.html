@@ -1,13 +1,10 @@
-{% extends 'manager/../base.html' %}
+{% extends 'manager/../manager/base.html' %}
 {% block content %}
 <div>
 <a href="{% url 'property_list' %}">Back
 </a>
 </div>
-
   <h1>Name: {{ property.name }}</h1>
-
-
  </div>
 <div>
     <p><strong>Address:</strong> {{ property.address }}</p>
