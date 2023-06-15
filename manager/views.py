@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Property, Room
+from django.shortcuts import render, redirect
+from django.db.models import Q
 
 def index(request):
     """View function for home page of site."""
@@ -20,3 +22,13 @@ class PropertyListView(LoginRequiredMixin, generic.ListView):
 
 class PropertyDetailView(LoginRequiredMixin, generic.DetailView):
     model = Property
+
+def property_search(request):
+    query = request.GET.get('query')
+    properties = []
+
+    if query:
+        properties = Property.objects.filter(Q(name__icontains=query))
+
+    context = {'properties': properties}
+    return render(request, 'manager/property_search.html', context)

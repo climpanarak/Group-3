@@ -1,0 +1,14 @@
+{% extends 'manager/base.html' %}
+
+{% block content %}
+    <h2>Search Results</h2>
+    <ul>
+        {% for property in properties %}
+            <li>
+                <a href="{% url 'property_detail' property.id %}">{{ property.name }}</a>
+            </li>
+        {% empty %}
+            <li>No results found.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
