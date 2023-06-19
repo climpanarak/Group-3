@@ -9,7 +9,7 @@
 <div>
     <p><strong>Address:</strong> {{ property.address }}</p>
     <p><strong>Owner:</strong> {{ property.owner.first_name }} {{ property.owner.last_name}}</p>
-      <div>
+    <div>
     {% if property.property_image %}
         <img src="{{ property.property_image.url }}">
     {% endif %}
