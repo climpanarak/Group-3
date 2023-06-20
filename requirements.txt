@@ -9,3 +9,4 @@ sqlparse==0.4.4
 typing-extensions==4.6.3
 tzdata==2023.3
 virtualenv==20.23.0
+Pillow==9.4.0
