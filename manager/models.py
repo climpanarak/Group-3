@@ -23,6 +23,7 @@ class Property(models.Model):
     owner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
     name = models.CharField(max_length=200)
     address = models.CharField(max_length=200)
+    property_image = models.ImageField(upload_to='images/', null=True, blank=True)
 
     def get_absolute_url(self):
         return reverse('property_detail', args=[str(self.id)])
