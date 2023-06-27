@@ -1,0 +1,17 @@
+{% extends 'manager/../manager/base.html' %}
+{% block content %}
+<div>
+<a href="{% url 'invoice' %}">Back
+</a>
+</div>
+  <h1>Name: {{ invoice.name }}</h1>
+ </div>
+<div>
+    <p><strong>Address:</strong> {{ property.address }}</p>
+    <p><strong>Owner:</strong> {{ property.owner.first_name }} {{ property.owner.last_name}}</p>
+    <div class="custom-file">
+    <input type="file" class="custom-file-input" id="customInput" required>
+    <label class="custom-file-label" for="customInput">Choose file...</label>
+    </div>
+</div>
+{% endblock %}

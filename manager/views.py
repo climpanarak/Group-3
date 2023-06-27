@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Property, Room
+from .models import Property, Room, Invoice
 from django.shortcuts import render, redirect
 from django.db.models import Q
 
@@ -22,6 +22,9 @@ class PropertyListView(LoginRequiredMixin, generic.ListView):
 
 class PropertyDetailView(LoginRequiredMixin, generic.DetailView):
     model = Property
+
+class InvoiceView(LoginRequiredMixin, generic.ListView):
+    model = Invoice
 
 def property_search(request):
     query = request.GET.get('query')
