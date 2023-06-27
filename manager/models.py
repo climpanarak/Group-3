@@ -10,6 +10,8 @@ class UserProfile(models.Model):
     ROLE_CHOICES = (
         ('MP', 'Management Property'),
         ('PO', 'Property Owner'),
+        ('TN', 'Tenant'),
+        ('SV', 'Service Professional')
     )
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     role = models.CharField(max_length=2, choices=ROLE_CHOICES)
