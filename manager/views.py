@@ -4,6 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Property, Room, Invoice
 from django.shortcuts import render, redirect
 from django.db.models import Q
+from django.views.generic.edit import CreateView, UpdateView
 
 def index(request):
     """View function for home page of site."""
@@ -25,6 +26,14 @@ class PropertyDetailView(LoginRequiredMixin, generic.DetailView):
 
 class InvoiceView(LoginRequiredMixin, generic.ListView):
     model = Invoice
+
+class InvoiceCreate(CreateView):
+    model = Invoice
+    fields = ['owner', 'invoice']
+
+class InvoiceUpdate(UpdateView):
+    model = Invoice
+    fields = ['owner', 'invoice']
 
 def property_search(request):
     query = request.GET.get('query')

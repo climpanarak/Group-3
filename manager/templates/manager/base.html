@@ -22,9 +22,18 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'property_list' %}">Property List</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'invoice' %}">Invoice</a>
-                    </li>
+                    {% if user.is_superuser %}
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+               aria-expanded="false">
+                Service Provider
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'invoice_create' %}">Add Invoice</a></li>
+            </ul>
+        </li>
+    {% endif %}
+
                 </ul>
                 <form class="d-flex ml-auto" action="/search" method="GET">
                     <input class="form-control me-2" type="search" name="query" placeholder="Search..." aria-label="Search">
