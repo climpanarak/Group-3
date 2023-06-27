@@ -46,3 +46,8 @@ class Room(models.Model):
     def __str__(self):
         """String for representing the Model object."""
         return f'{self.get_type_display()} - {self.property}'
+
+class Application(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    
