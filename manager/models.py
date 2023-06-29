@@ -47,6 +47,14 @@ class Room(models.Model):
         """String for representing the Model object."""
         return f'{self.get_type_display()} - {self.property}'
 
+class Invoice(models.Model):
+    """Model representing an invoice."""
+    owner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    invoice = models.FileField(upload_to='Invoice', blank=True)
+
+    def get_absolute_url(self):
+        return reverse('index')
+
 class Application(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField()
