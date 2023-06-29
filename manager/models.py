@@ -50,4 +50,4 @@ class Room(models.Model):
 class Application(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField()
-    
+    property = models.ForeignKey(Property, on_delete=models.CASCADE, null=True)
