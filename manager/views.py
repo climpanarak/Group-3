@@ -1,12 +1,10 @@
-from django.shortcuts import render
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Property, Room, Invoice, Application
-from django.shortcuts import render, redirect
-from django.db.models import Q
-from django.views.generic.edit import CreateView
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.shortcuts import render, redirect
+from django.db.models import Q
 from django.views.generic.edit import CreateView, UpdateView
 
 def index(request):
@@ -47,3 +45,15 @@ def property_search(request):
 
     context = {'properties': properties}
     return render(request, 'manager/property_search.html', context)
+
+class ApplicationCreate(CreateView):
+    model = Application
+    fields = ['name', 'email','property']
+
+    def form_valid(self, form):
+        post = form.save(commit=False)
+        post.save()
+        return HttpResponseRedirect(reverse('application_list'))
+
+class ApplicationListView(LoginRequiredMixin, generic.ListView):
+    model = Application

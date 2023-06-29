@@ -1,0 +1,16 @@
+{% extends 'manager/../manager/base.html' %}
+
+{% block content %}
+    {% if application_list %}
+        <table class="table table-bordered">
+            {% for application in application_list %}
+                <tr class="table-secondary">
+                    <td>{{  application.name }}</td>
+                <td>{{ application.property }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>There are no applications in the system.</p>
+    {% endif %}
+{% endblock %}

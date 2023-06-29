@@ -1,6 +1,5 @@
 from django.contrib import admin
-from .models import Property, Room, Invoice
-from .models import Property, Room, UserProfile, Application
+from .models import Property, Room, UserProfile, Application, Invoice
 
 admin.site.register(Property)
 admin.site.register(UserProfile)
