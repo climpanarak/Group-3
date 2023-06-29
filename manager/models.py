@@ -48,4 +48,7 @@ class Room(models.Model):
 class Invoice(models.Model):
     """Model representing an invoice."""
     owner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
-    invoice = models.FileField(upload_to='Invoice', default='SOME STRING')
+    invoice = models.FileField(upload_to='Invoice', blank=True)
+
+    def get_absolute_url(self):
+        return reverse('index')

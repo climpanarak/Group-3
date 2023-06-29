@@ -4,7 +4,7 @@
 
 {% block content %}
     {% if perms.manager.create_invoice or perms.manager.edit_invoice %}
-        <form action="" method="POST">
+        <form action="" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form|crispy }}
 
