@@ -52,3 +52,8 @@ class Invoice(models.Model):
 
     def get_absolute_url(self):
         return reverse('index')
+
+class Application(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    property = models.ForeignKey(Property, on_delete=models.CASCADE, null=True)
