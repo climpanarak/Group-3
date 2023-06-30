@@ -1,10 +1,11 @@
-from django.shortcuts import render
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Property, Room
+from .models import Property, Room, Invoice, Application
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 from django.shortcuts import render, redirect
 from django.db.models import Q
-from .models import Application
+from django.views.generic.edit import CreateView, UpdateView
 
 def index(request):
     """View function for home page of site."""
@@ -24,6 +25,17 @@ class PropertyListView(LoginRequiredMixin, generic.ListView):
 class PropertyDetailView(LoginRequiredMixin, generic.DetailView):
     model = Property
 
+class InvoiceView(LoginRequiredMixin, generic.ListView):
+    model = Invoice
+
+class InvoiceCreate(CreateView):
+    model = Invoice
+    fields = ['owner', 'invoice']
+
+class InvoiceUpdate(UpdateView):
+    model = Invoice
+    fields = ['owner', 'invoice']
+
 def property_search(request):
     query = request.GET.get('query')
     properties = []
@@ -34,18 +46,14 @@ def property_search(request):
     context = {'properties': properties}
     return render(request, 'manager/property_search.html', context)
 
-def submit_application(request):
-    if request.method == 'POST':
-        name = request.POST.get('name')
-        email = request.POST.get('email')
-        application = Application(name=name, email=email)
-        application.save()
-        return render(request, 'success.html')
-    else:
-        return render(request, 'manager/application_form.html')
+class ApplicationCreate(CreateView):
+    model = Application
+    fields = ['name', 'email','property']
+
+    def form_valid(self, form):
+        post = form.save(commit=False)
+        post.save()
+        return HttpResponseRedirect(reverse('application_list'))
 
 class ApplicationListView(LoginRequiredMixin, generic.ListView):
-    model = Application
-
-class submit_applicationDetailView(LoginRequiredMixin, generic.DetailView):
     model = Application

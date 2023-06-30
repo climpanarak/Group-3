@@ -6,7 +6,9 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('property_list/', views.PropertyListView.as_view(), name='property_list'),
     path('property_detail/<int:pk>', views.PropertyDetailView.as_view(), name='property_detail'),
+    path('invoice/create', views.InvoiceCreate.as_view(), name='invoice_create'),
+    path('invoice/<int:pk>/update/', views.InvoiceUpdate.as_view(), name='invoice_update'),
     path('search/', property_search, name='property_search'),
-    path('submit/', views.submit_applicationDetailView.as_view(), name='submit_application'),
-    path('application/', views.ApplicationListView.as_view(), name='application_form'),
+    path('applications/', views.ApplicationListView.as_view(), name='application_list'),
+    path('submit/', views.ApplicationCreate.as_view(), name='application_form'),
 ]
